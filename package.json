@@ -20,6 +20,10 @@
   },
   "homepage": "https://github.com/ChristopherTrimboli/react-vrm-server#readme",
   "devDependencies": {
+    "@types/ws": "^8.5.3",
     "concurrently": "^7.5.0"
+  },
+  "dependencies": {
+    "ws": "^8.11.0"
   }
 }
