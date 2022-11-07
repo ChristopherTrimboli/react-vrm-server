@@ -1,7 +1,7 @@
 import { WebSocketServer } from "ws";
 
 const wss = new WebSocketServer({
-    port: 80
+    port: Number(process.env.PORT) || 80
 });
 
 const users: any = {};
