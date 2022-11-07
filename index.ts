@@ -1,8 +1,14 @@
-import { WebSocketServer } from "ws";
+import { Server } from "ws";
+import express from "express";
 
-const wss = new WebSocketServer({
-    port: Number(process.env.PORT) || 80
-});
+const INDEX = '/index.html';
+const PORT = Number(process.env.PORT) || 80;
+
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+
+const wss = new Server({ server });
 
 const users: any = {};
 
@@ -11,7 +17,6 @@ wss.on('connection', (ws) => {
 
     ws.on('message', (data) => {
         const message = JSON.parse(data.toString());
-        console.log(message);
         switch (message.type) {
             case "position": {
                 userId = message.userId;
